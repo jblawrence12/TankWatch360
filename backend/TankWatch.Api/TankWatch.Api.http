@@ -1,0 +1,6 @@
+@TankWatch.Api_HostAddress = http://localhost:5048
+
+GET {{TankWatch.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

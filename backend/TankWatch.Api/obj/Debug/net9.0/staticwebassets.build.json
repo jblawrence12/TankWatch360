@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "ndAXM2Bomx3GqRuO1W+sBVNdrLIBUwnDRp8+xZ3NvXA=",
+  "Source": "TankWatch.Api",
+  "BasePath": "_content/TankWatch.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

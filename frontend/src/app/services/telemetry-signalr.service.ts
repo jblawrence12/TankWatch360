@@ -1,51 +1,37 @@
 import { Injectable } from '@angular/core';
-import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
-import { Subject } from 'rxjs';
-import { Telemetry } from '../models/telemetry';
+import * as signalR from '@microsoft/signalr';
+import { BehaviorSubject } from 'rxjs';
+import type { Telemetry } from '../models/telemetry';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TelemetrySignalRService {
-  private connection: HubConnection | null = null;
-  private telemetrySubject = new Subject<Telemetry>();
-  telemetry$ = this.telemetrySubject.asObservable();
+  private hubConnection: signalR.HubConnection | null = null;
+  public telemetry$ = new BehaviorSubject<Telemetry | null>(null);
 
   constructor() {
-    console.log('🚗 Initializing SignalR Service');
-    this.connection = new HubConnectionBuilder()
-      .withUrl('/telemetryhub')
-      .withAutomaticReconnect()
-      .build();
-
-    this.connection.on('ReceiveTelemetry', (data: Telemetry) => {
-      console.log('🦠 Raw SignalR Data:', JSON.stringify(data, null, 2));
-      this.telemetrySubject.next(data);
-    });
-
-    this.connection.onclose(error => {
-      console.error('🛑 SignalR Connection Closed:', error);
-    });
-
-    this.connection.onreconnecting(error => {
-      console.warn('🔄 SignalR Reconnecting:', error);
-    });
-
-    this.connection.onreconnected(connectionId => {
-      console.log('✅ SignalR Reconnected:', connectionId);
-    });
-
     this.startConnection();
   }
 
-  private async startConnection() {
-    if (!this.connection) return;
-    try {
-      await this.connection.start();
-      console.log('🚖🚖 SignalR Connected to /telemetryhub');
-    } catch (error) {
-      console.error('❌ SignalR Connection Failed:', error);
-      setTimeout(() => this.startConnection(), 5000);
-    }
+  private startConnection(): void {
+    this.hubConnection = new signalR.HubConnectionBuilder()
+      .withUrl('/telemetryhub') // proxy handles localhost:5048
+      .withAutomaticReconnect()
+      .build();
+
+    this.hubConnection
+      .start()
+      .then(() => console.log('✅ SignalR Connected to /telemetryhub'))
+      .catch(err => console.error('❌ SignalR Connection Error:', err));
+
+    this.hubConnection.on('ReceiveTelemetry', (data: Telemetry) => {
+      console.log('📡 SignalR Received Telemetry:', data);
+      this.telemetry$.next(data);
+    });
+
+    this.hubConnection.onclose(err => {
+      console.warn('🔌 SignalR Connection Closed:', err);
+    });
   }
 }

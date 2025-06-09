@@ -27,6 +27,8 @@ function computeZone(value: number, greenMax: number, yellowMax: number): Zone {
   return 'red';
 }
 
+// Dashboard component for displaying telemetry data in a table and charts
+// It subscribes to a SignalR service for real-time updates and fetches initial data from an API endpoint
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -77,11 +79,14 @@ export class Dashboard implements OnInit {
     private cdr: ChangeDetectorRef
   ) {}
 
+  // Lifecycle hook that runs when the component is initialized
+  // This method sets up the SignalR subscription and fetches initial data
+  // It also processes incoming telemetry data and updates the table and charts
   ngOnInit() {
     console.log('🧪 Dashboard Initialized');
     this.fetchData();
     this.signalRService.telemetry$.subscribe({
-      next: (data: Telemetry) => {
+      next: (data: Telemetry | null) => {
         console.log('🔔 Received Telemetry:', JSON.stringify(data, null, 2));
         if (!data || !data.tankName) {
           console.warn('⚠️ Invalid Telemetry Data:', data);
@@ -126,6 +131,8 @@ export class Dashboard implements OnInit {
     });
   }
 
+  // Initial data fetch to populate table and charts
+  // This method is called once on component initialization
   fetchData() {
     console.log('📡 Fetching Initial Data');
     this.http.get<Telemetry[]>('/api/telemetry/latest').subscribe({
@@ -153,6 +160,8 @@ export class Dashboard implements OnInit {
     });
   }
 
+  // Update charts with new data
+  // This method is called whenever new telemetry data is received
   updateCharts(rows: TelemetryZone[]) {
     console.log('📈 Updating Charts');
     const filtered = this.selectedTank === 'all'
@@ -176,15 +185,18 @@ export class Dashboard implements OnInit {
     console.log('✅ Charts Updated');
   }
 
+  // Handle tank selection change
   filterByTank() {
     console.log('🎚️ Filtering by Tank:', this.selectedTank);
     this.fetchData();
   }
 
+  // Get CSS class for zone coloring
   getZoneClass(zone: Zone) {
     return `cell-${zone}`;
   }
 
+  // Handle tab change event
   onTabChange(event: any) {
     console.log('🔁 Tab Changed:', event);
   }

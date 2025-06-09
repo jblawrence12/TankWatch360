@@ -1,102 +1,9 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\justi\\Documents\\tankwatch360\\backend\\TankWatch.Worker\\TankWatch.Worker.csproj": {}
+    "C:\\Users\\justi\\Documents\\tankwatch360\\backend\\TankWatch.worker\\TankWatch.Worker.csproj": {}
   },
   "projects": {
-    "C:\\Users\\justi\\Documents\\tankwatch360\\backend\\TankWatch.Api\\TankWatch.Api.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\justi\\Documents\\tankwatch360\\backend\\TankWatch.Api\\TankWatch.Api.csproj",
-        "projectName": "TankWatch.Api",
-        "projectPath": "C:\\Users\\justi\\Documents\\tankwatch360\\backend\\TankWatch.Api\\TankWatch.Api.csproj",
-        "packagesPath": "C:\\Users\\justi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\justi\\Documents\\tankwatch360\\backend\\TankWatch.Api\\obj\\",
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\justi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net9.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net9.0": {
-            "targetAlias": "net9.0",
-            "projectReferences": {
-              "C:\\Users\\justi\\Documents\\tankwatch360\\backend\\TankWatch.Domain\\TankWatch.Domain.csproj": {
-                "projectPath": "C:\\Users\\justi\\Documents\\tankwatch360\\backend\\TankWatch.Domain\\TankWatch.Domain.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.200"
-      },
-      "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
-          "dependencies": {
-            "Microsoft.AspNetCore.OpenApi": {
-              "target": "Package",
-              "version": "[9.0.3, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[9.0.5, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[9.0.5, )"
-            },
-            "Swashbuckle.AspNetCore": {
-              "target": "Package",
-              "version": "[8.1.4, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.202/PortableRuntimeIdentifierGraph.json"
-        }
-      }
-    },
     "C:\\Users\\justi\\Documents\\tankwatch360\\backend\\TankWatch.Domain\\TankWatch.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -169,14 +76,14 @@
         }
       }
     },
-    "C:\\Users\\justi\\Documents\\tankwatch360\\backend\\TankWatch.Worker\\TankWatch.Worker.csproj": {
+    "C:\\Users\\justi\\Documents\\tankwatch360\\backend\\TankWatch.worker\\TankWatch.Worker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\justi\\Documents\\tankwatch360\\backend\\TankWatch.Worker\\TankWatch.Worker.csproj",
+        "projectUniqueName": "C:\\Users\\justi\\Documents\\tankwatch360\\backend\\TankWatch.worker\\TankWatch.Worker.csproj",
         "projectName": "TankWatch.Worker",
-        "projectPath": "C:\\Users\\justi\\Documents\\tankwatch360\\backend\\TankWatch.Worker\\TankWatch.Worker.csproj",
+        "projectPath": "C:\\Users\\justi\\Documents\\tankwatch360\\backend\\TankWatch.worker\\TankWatch.Worker.csproj",
         "packagesPath": "C:\\Users\\justi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\justi\\Documents\\tankwatch360\\backend\\TankWatch.Worker\\obj\\",
+        "outputPath": "C:\\Users\\justi\\Documents\\tankwatch360\\backend\\TankWatch.worker\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -198,8 +105,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\justi\\Documents\\tankwatch360\\backend\\TankWatch.Api\\TankWatch.Api.csproj": {
-                "projectPath": "C:\\Users\\justi\\Documents\\tankwatch360\\backend\\TankWatch.Api\\TankWatch.Api.csproj"
+              "C:\\Users\\justi\\Documents\\tankwatch360\\backend\\TankWatch.Domain\\TankWatch.Domain.csproj": {
+                "projectPath": "C:\\Users\\justi\\Documents\\tankwatch360\\backend\\TankWatch.Domain\\TankWatch.Domain.csproj"
               }
             }
           }
@@ -220,9 +127,17 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.5, )"
+            },
             "Microsoft.Extensions.Hosting": {
               "target": "Package",
               "version": "[9.0.3, )"
+            },
+            "Microsoft.Extensions.Http": {
+              "target": "Package",
+              "version": "[9.0.5, )"
             }
           },
           "imports": [

@@ -8,11 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.5" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.5" />
   </ItemGroup>
 
-<ItemGroup>
-  <ProjectReference Include="..\TankWatch.Api\TankWatch.Api.csproj" />
-</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TankWatch.Domain\TankWatch.Domain.csproj" />
+  </ItemGroup>
+
 
 </Project>

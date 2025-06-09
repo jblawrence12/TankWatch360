@@ -1,8 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.SignalR;
-using TankWatch.Api; // for TelemetryHub and TankContext
-using TankWatch.Domain; // for Tank and TankTelemetry
+using Microsoft.EntityFrameworkCore;
+using TankWatch.Domain; // For TankContext, Tank, TankTelemetry
 using System;
 using System.Linq;
 using System.Threading;
@@ -10,18 +9,31 @@ using System.Threading.Tasks;
  using System.Text.Json; 
 
 namespace TankWatch.Worker
-{
+{   
+    /// <summary>
+    /// Worker is a background service that periodically generates and sends telemetry data for tanks.
+    /// It retrieves tanks from the database, generates random telemetry data, and sends it via SignalR.
+    /// </summary>
     public class Worker : BackgroundService
     {
-        private readonly IServiceProvider _services;
-        private readonly IHubContext<TelemetryHub> _hub;
 
-        public Worker(IServiceProvider services, IHubContext<TelemetryHub> hub)
+        // IServiceProvider is used to create a scope for each execution
+        // This allows us to resolve scoped services like TankContext
+        private readonly IServiceProvider _services;
+
+        // TelemetryService is used to send telemetry data to the API
+        private readonly TelemetryService _telemetry;
+
+        // constructor that takes IServiceProvider and TelemetryService
+        // This allows us to resolve services from the DI container
+        public Worker(IServiceProvider services, TelemetryService telemetry)
         {
             _services = services;
-            _hub = hub;
+            _telemetry = telemetry;
         }
 
+        // ExecuteAsync is the main method that runs in the background
+        // It runs in a loop until the service is stopped or cancelled
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while (!stoppingToken.IsCancellationRequested)
@@ -65,7 +77,8 @@ namespace TankWatch.Worker
                         };
 
                         Console.WriteLine($"Preparing to send telemetry: {JsonSerializer.Serialize(telemetryToSend)}");
-                        await _hub.Clients.All.SendAsync("ReceiveTelemetry", telemetryToSend, stoppingToken);
+                        await _telemetry.SendTelemetryAsync(telemetryToSend, stoppingToken);
+
                         Console.WriteLine($"Sent telemetry via SignalR: {JsonSerializer.Serialize(telemetryToSend)}");
                     }
                     else

@@ -1,24 +1,19 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.SignalR;
-using TankWatch.Api;          // ✅ For TelemetryHub
-using TankWatch.Domain;       // ✅ For TankContext
-using TankWatch.Worker;       // ✅ For Worker
+using TankWatch.Domain;
+using TankWatch.Worker;
 
+// Main entry point for the Worker service
+// This service will run in the background and periodically send telemetry data
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
     {
-        // Add your DB context
         services.AddDbContext<TankContext>(options =>
-            options.UseSqlServer(context.Configuration.GetConnectionString("Default")));
+            options.UseSqlServer(context.Configuration.GetConnectionString("Default")));// Configure EF Core with SQL Server connection string
 
-        // Add SignalR (required for IHubContext<T>)
-        services.AddSignalR();
-
-
-        // Register the background worker
-        services.AddHostedService<Worker>();
+        services.AddHttpClient<TelemetryService>(); // Add HttpClient for TelemetryService
+        services.AddHostedService<Worker>(); // Register the Worker service
     })
     .Build();
 

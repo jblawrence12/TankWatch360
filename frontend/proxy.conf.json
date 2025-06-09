@@ -1,0 +1,13 @@
+{
+  "/telemetryhub": {
+    "target": "http://localhost:5048",
+    "secure": false,
+    "changeOrigin": true,
+    "ws": true
+  },
+  "/api": {
+    "target": "http://localhost:5048",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

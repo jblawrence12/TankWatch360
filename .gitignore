@@ -1,0 +1,13 @@
+# .NET
+**/bin/
+**/obj/
+**/*.user
+**/*.suo
+**/*.vs/
+
+# Node / Angular
+node_modules/
+wwwroot/
+
+# VS Code
+.vscode/

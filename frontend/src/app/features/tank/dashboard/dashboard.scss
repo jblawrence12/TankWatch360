@@ -1,0 +1,59 @@
+:host {
+  display: block;
+
+  .cell-green {
+    background-color: rgba(56, 142, 60, 0.2);
+    color: rgb(56, 142, 60);
+    font-weight: 500;
+  }
+  .cell-yellow {
+    background-color: rgba(245, 124, 0, 0.2);
+    color: rgb(245, 124, 0);
+    font-weight: 500;
+  }
+  .cell-red {
+    background-color: rgba(211, 47, 47, 0.2);
+    color: rgb(211, 47, 47);
+    font-weight: 500;
+  }
+
+  .chart-container {
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    zoom: .9;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--md-sys-color-surface-container-high);
+      font-weight: 600;
+    }
+    tr:hover {
+      background-color: var(--md-sys-color-surface-container-low);
+    }
+  }
+
+  mat-card {
+    margin-bottom: 16px;
+    padding: 16px;
+  }
+
+  @media (max-width: 600px) {
+    .chart-container {
+      height: 300px;
+    }
+    table {
+      font-size: 14px;
+      th, td {
+        padding: 8px;
+      }
+    }
+  }
+}

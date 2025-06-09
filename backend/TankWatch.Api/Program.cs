@@ -5,18 +5,25 @@ using Microsoft.AspNetCore.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ─── Services ────────────────────────────────────────────────────────────────
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+/* ─── Services & Configuration ──────────────────────────────────────────────
+ * Add services to the container.
+ * This is where we configure EF Core, SignalR, CORS, etc.
+ */
+builder.Services.AddControllers();  // ← Add MVC controllers
+builder.Services.AddEndpointsApiExplorer(); // ← For OpenAPI/Swagger support
+builder.Services.AddSwaggerGen();       // ← Swagger UI for API docs
 
+// ✅ Entity Framework Core
+// This adds the EF Core services to the DI container
 builder.Services.AddDbContext<TankContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
 // ✅ SignalR
+// This adds the SignalR services to the DI container
 builder.Services.AddSignalR();
 
-// ✅ CORS
+// ✅ CORS - Cross-Origin Resource Sharing
+// This allows your Angular app to connect to the SignalR hub
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -31,6 +38,7 @@ builder.Services.AddCors(options =>
 // ─── Build & Middleware ──────────────────────────────────────────────────────
 var app = builder.Build();
 
+// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -46,7 +54,9 @@ app.MapHub<TelemetryHub>("/telemetryhub"); // ← Must match frontend SignalR UR
 
 app.MapGet("/", () => "Hello TankWatch!");
 
-// ─── Seed Data ───────────────────────────────────────────────────────────────
+// ─── Database Seeding ──────────────────────────────────────────────────────
+// This is where we seed the database with initial data
+// It runs once when the app starts, if the database is empty.
 using (var scope = app.Services.CreateScope())
 {
     var ctx = scope.ServiceProvider.GetRequiredService<TankContext>();

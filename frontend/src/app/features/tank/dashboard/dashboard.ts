@@ -69,7 +69,7 @@ export class Dashboard implements OnInit {
     responsive: true,
     animation: false,
     plugins: { legend: { display: true }, tooltip: { mode: 'index', intersect: false } },
-    scales: { x: { title: { display: true, text: 'Time (UTC)' } }, y: { beginAtZero: true } }
+    scales: { x: { title: { display: true, text: 'Time (PST)' } }, y: { beginAtZero: true } }
   };
 
   constructor(
@@ -167,7 +167,9 @@ export class Dashboard implements OnInit {
     const filtered = this.selectedTank === 'all'
       ? rows
       : rows.filter(r => r.tankName === this.selectedTank);
-    const labels = filtered.map(r => new Date(r.timestamp).toLocaleTimeString());
+    const labels = filtered.map(r => new Date(r.timestamp).toLocaleTimeString('en-US', {
+      hour: '2-digit', timeZone: 'America/Los_Angeles', hour12: true
+    }));
 
     this.levelChartData.labels = labels;
     this.levelChartData.datasets[0].data = filtered.map(r => r.level);

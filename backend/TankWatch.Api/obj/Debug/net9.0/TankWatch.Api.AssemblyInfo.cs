@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TankWatch.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ea2411416186a9acceef6944e75205c6546eb31f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+29d592d974dfcbd6efb11d433e459cd5b98f229a")]
 [assembly: System.Reflection.AssemblyProductAttribute("TankWatch.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TankWatch.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

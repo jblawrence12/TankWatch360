@@ -16,7 +16,9 @@ builder.Services.AddSwaggerGen();       // ← Swagger UI for API docs
 // ✅ Entity Framework Core
 // This adds the EF Core services to the DI container
 builder.Services.AddDbContext<TankContext>(opt =>
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("Default"),
+    b => b.MigrationsAssembly(typeof(Program).Assembly.FullName)
+    ));
 
 // ✅ SignalR
 // This adds the SignalR services to the DI container

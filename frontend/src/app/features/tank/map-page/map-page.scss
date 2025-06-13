@@ -1,0 +1,12 @@
+.map-wrapper {
+  height: calc(100vh - 64px);   /* toolbar height */
+  width:  100vw;                /* critical: full browser width  */
+  overflow: hidden;
+}
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+}
+.leaflet-container .leaflet-control-attribution {
+  display: none; /* hide attribution */
+}

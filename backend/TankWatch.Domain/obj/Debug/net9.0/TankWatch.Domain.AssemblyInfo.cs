@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TankWatch.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+29d592d974dfcbd6efb11d433e459cd5b98f229a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9b1b9572f9e814064adf161449311ba42bec558f")]
 [assembly: System.Reflection.AssemblyProductAttribute("TankWatch.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TankWatch.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

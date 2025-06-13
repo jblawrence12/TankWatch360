@@ -17,7 +17,7 @@ import { registerables, Chart } from 'chart.js';
 import { TelemetrySignalRService } from '../../../services/telemetry-signalr.service';
 import type { Telemetry } from '../../../models/telemetry';
 import type { TelemetryZone } from '../../../models/telemetryzone';
-
+import { TankMap } from '../map/map'; // Import the standalone Leaflet component
 Chart.register(...registerables);
 
 type Zone = 'green' | 'yellow' | 'red';
@@ -45,6 +45,7 @@ function computeZone(value: number, greenMax: number, yellowMax: number): Zone {
     MatTabsModule,
     MatToolbarModule,
     BaseChartDirective,
+    TankMap 
   ],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.scss'],
@@ -54,6 +55,7 @@ export class Dashboard implements OnInit {
   dataSource = new MatTableDataSource<TelemetryZone>([]);
   tankNames: string[] = ['Tank Alpha', 'Tank Bravo', 'Tank Charlie']; // Pre-populate to avoid filtering issues
   selectedTank = 'all';
+  lastTelemetry: Telemetry | null = null;   
 
   @ViewChild('table') table!: MatTable<TelemetryZone>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -91,7 +93,9 @@ export class Dashboard implements OnInit {
         if (!data || !data.tankName) {
           console.warn('⚠️ Invalid Telemetry Data:', data);
           return;
+          
         }
+        this.lastTelemetry = data; 
         this.ngZone.run(() => {
           const newRow: TelemetryZone = {
             ...data,

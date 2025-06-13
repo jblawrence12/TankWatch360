@@ -73,7 +73,9 @@ namespace TankWatch.Worker
                             Radiation = newTelemetry.Radiation,
                             Pressure = newTelemetry.Pressure,
                             TankId = newTelemetry.TankId,
-                            TankName = chosenTank.Name // Matches frontend's Telemetry interface
+                            TankName = chosenTank.Name, // Matches frontend's Telemetry interface
+                            Lat = chosenTank.Latitude,
+                            Lng = chosenTank.Longitude
                         };
 
                         Console.WriteLine($"Preparing to send telemetry: {JsonSerializer.Serialize(telemetryToSend)}");

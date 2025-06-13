@@ -93,6 +93,7 @@
               }
             ],
             "styles": [
+              "node_modules/leaflet/dist/leaflet.css",
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.scss"
             ]
@@ -104,4 +105,6 @@
   "cli": {
     "analytics": "b9bc0262-b7fb-45fd-b4b2-9c81fc8e2d74"
   }
+
+
 }

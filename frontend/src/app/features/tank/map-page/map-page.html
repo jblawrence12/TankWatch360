@@ -1,0 +1,9 @@
+<mat-toolbar color="primary" class="shadow-md">
+  <button mat-icon-button routerLink="/tank"><mat-icon>arrow_back</mat-icon></button>
+  <span class="ml-2 font-bold text-lg">TankWatch – Hanford Map</span>
+</mat-toolbar>
+
+<!-- full viewport minus toolbar -->
+<div class="map-wrapper">
+  <app-tank-map [telemetry]="lastTelemetry"></app-tank-map>
+</div>

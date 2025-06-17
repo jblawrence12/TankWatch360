@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VS8q0SnBEQw=",
+  "dgSpecHash": "dV2+207QEb4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\justi\\Documents\\tankwatch360\\backend\\TankWatch.worker\\TankWatch.Worker.csproj",
+  "projectFilePath": "C:\\Users\\justi\\Documents\\tankwatch360\\backend\\TankWatch.Worker\\TankWatch.Worker.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\justi\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\justi\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

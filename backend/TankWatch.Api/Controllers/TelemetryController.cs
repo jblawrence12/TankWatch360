@@ -43,7 +43,9 @@ public class TelemetryController : ControllerBase
             t.Radiation,
             t.Pressure,
             TankId = t.TankId,
-            TankName = t.Tank?.Name
+            TankName = t.Tank?.Name,
+            Lat = t.Tank?.Latitude,
+            Lng = t.Tank?.Longitude
         });
     }
 
